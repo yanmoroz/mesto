@@ -26,3 +26,6 @@
 
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
+
+@import url('../blocks/edit-modal-window/edit-modal-window.css');
+@import url('../blocks/edit-modal-window/_opened/edit-modal-window_opened.css');
