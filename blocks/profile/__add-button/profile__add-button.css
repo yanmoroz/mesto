@@ -8,4 +8,5 @@
   background-position: center;
   border: 1px solid white;
   margin-left: auto;
+  grid-area: add-button;
 }
