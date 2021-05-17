@@ -2,12 +2,20 @@ let editPopup = document.querySelector('.popup');
 let editButton = document.querySelector('.profile__edit-button');
 let closePopupButton = document.querySelector('.popup__close-button');
 let saveButton = document.querySelector('.popup__save-button');
-
 let nameLabel = document.querySelector('.profile__name');
 let aboutLabel = document.querySelector('.profile__about');
+
+let likeButtons = document.querySelectorAll('.card__like-button');
+
+let formElement = document.querySelector('.popup__form');
 let nameInput = document.querySelector('#name-input');
 let aboutInput = document.querySelector('#about-input');
-let formElement = document.querySelector('.popup__form');
+
+for (let i = 0; i < likeButtons.length; i++) {
+  likeButtons[i].addEventListener('click', function() {
+    likeButtons[i].classList.toggle('card__like-button_liked');
+  });
+}
 
 editButton.addEventListener('click', function() {
   nameInput.value = nameLabel.textContent;
