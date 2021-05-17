@@ -21,6 +21,9 @@ editButton.addEventListener('click', function() {
   nameInput.value = nameLabel.textContent;
   aboutInput.value = aboutLabel.textContent;
   editPopup.classList.toggle('popup_opened');
+
+  let mainContainer = document.querySelector('.container');
+  mainContainer.style.display = 'none'; 
 });
 
 closePopupButton.addEventListener('click', function() {

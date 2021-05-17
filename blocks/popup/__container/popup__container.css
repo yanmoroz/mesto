@@ -2,10 +2,16 @@
   position: relative;
   background-color: #fff;
   width: 430px;
-  height: 330px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 34px 36px 37px;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 525px) {
+  .popup__container {
+    width: calc(100vw - (19px * 2));
+    padding: 25px 22px;
+  } 
 }
