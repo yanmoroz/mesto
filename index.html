@@ -20,11 +20,11 @@
         <div class="profile__info">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
           <p class="profile__about">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="cards">
         <ul class="cards-list">
@@ -32,42 +32,42 @@
             <img src="./images/card-1.jpg" alt="Фото карточки" class="card__image">
             <div class="card__info">
               <h2 class="card__title">Карачаевск</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button card__like-button_liked" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img src="./images/card-2.jpg" alt="Фото карточки" class="card__image">
             <div class="card__info">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img src="./images/card-3.jpg" alt="Фото карточки" class="card__image">
             <div class="card__info">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button card__like-button_liked" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img src="./images/card-4.jpg" alt="Фото карточки" class="card__image">
             <div class="card__info">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img src="./images/card-5.jpg" alt="Фото карточки" class="card__image">
             <div class="card__info">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img src="./images/card-6.jpg" alt="Фото карточки" class="card__image">
             <div class="card__info">
               <h2 class="card__title">Карачаево-Черкессия</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>
           </li>
         </ul>
@@ -80,17 +80,19 @@
 
   <div class="popup">
     <div class="popup__container">
-      <form action="/contollerName/actionName" class="popup__form">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__textfield" id="name-input" placeholder="Имя">
-        <input type="text" class="popup__textfield" id="about-input" placeholder="О себе">
-        <button class="popup__save-button">Сохранить</button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form name="editForm" action="/controllerName/actionName" class="popup__form">
+        <input type="text" class="popup__textfield" id="name-input" name="profileName" placeholder="Имя">
+        <input type="text" class="popup__textfield" id="about-input" name="profileAbout" placeholder="О себе">
+        <!-- Явно задал type="submit" т.к. полагаю что в дальнейшем нажатие на данную кнопку будет приводить к отправке на сервер.
+        Если не правильно понимаю как в дальнешейм будет отрабатывать кнопка, прошу считать что задал бы type="button"  -->
+        <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close-button"></button>
+      <button class="popup__close-button" type="button"></button>
     </div>
   </div>
 
-  <script src="index.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 
 </html>
