@@ -26,7 +26,7 @@ function saveFormSubmitHandler(evt) {
   evt.preventDefault();
   nameLabel.textContent = nameInput.value;
   aboutLabel.textContent = aboutInput.value;
-  openPopup();
+  closePopup();
 }
 
 // Click and sumbit handlers assigning
