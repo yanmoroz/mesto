@@ -10,14 +10,14 @@ let aboutInput = document.querySelector('#about-input');
 
 // Functions defining
 // Функция открытия попап при нажатии на кнопку редактирования
-function editButtonHandler() {
+function openPopup() {
   editPopup.classList.add('popup_opened');
   nameInput.value = nameLabel.textContent;
   aboutInput.value = aboutLabel.textContent;
 }
 
 // Функция закрытия попап при нажатии на кнопку-крестик (без сохранения)
-function closePopupButtonHandler() {
+function closePopup() {
   editPopup.classList.remove('popup_opened');
 }
 
@@ -26,10 +26,10 @@ function saveFormSubmitHandler(evt) {
   evt.preventDefault();
   nameLabel.textContent = nameInput.value;
   aboutLabel.textContent = aboutInput.value;
-  editPopup.classList.remove('popup_opened');
+  openPopup();
 }
 
 // Click and sumbit handlers assigning
-editButton.addEventListener('click', editButtonHandler);
-closePopupButton.addEventListener('click', closePopupButtonHandler);
+editButton.addEventListener('click', openPopup);
+closePopupButton.addEventListener('click', closePopup);
 saveForm.addEventListener('submit', saveFormSubmitHandler);
