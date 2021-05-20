@@ -9,29 +9,24 @@ let nameInput = document.querySelector('#name-input');
 let aboutInput = document.querySelector('#about-input');
 
 // Functions defining
-function openEditPopup() {
-  editPopup.classList.add('popup_opened');
-}
-
-function closeEditPopup() {
-  editPopup.classList.remove('popup_opened');
-}
-
+// Функция открытия попап при нажатии на кнопку редактирования
 function editButtonHandler() {
-  openEditPopup();
+  editPopup.classList.add('popup_opened');
   nameInput.value = nameLabel.textContent;
   aboutInput.value = aboutLabel.textContent;
 }
 
+// Функция закрытия попап при нажатии на кнопку-крестик (без сохранения)
 function closePopupButtonHandler() {
-  closeEditPopup();
+  editPopup.classList.remove('popup_opened');
 }
 
+// Функция сохранения введенных данных и закрытия попап при нажатии на кнопку "Сохранить"
 function saveFormSubmitHandler(evt) {
   evt.preventDefault();
   nameLabel.textContent = nameInput.value;
   aboutLabel.textContent = aboutInput.value;
-  closeEditPopup();
+  editPopup.classList.remove('popup_opened');
 }
 
 // Click and sumbit handlers assigning
