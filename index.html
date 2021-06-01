@@ -27,50 +27,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="cards">
-        <ul class="cards-list">
-          <li class="card">
-            <img src="./images/card-1.jpg" alt="Фото карточки" class="card__image">
-            <div class="card__info">
-              <h2 class="card__title">Карачаевск</h2>
-              <button class="card__like-button card__like-button_liked" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-2.jpg" alt="Фото карточки" class="card__image">
-            <div class="card__info">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-3.jpg" alt="Фото карточки" class="card__image">
-            <div class="card__info">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__like-button card__like-button_liked" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-4.jpg" alt="Фото карточки" class="card__image">
-            <div class="card__info">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-5.jpg" alt="Фото карточки" class="card__image">
-            <div class="card__info">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-6.jpg" alt="Фото карточки" class="card__image">
-            <div class="card__info">
-              <h2 class="card__title">Карачаево-Черкессия</h2>
-              <button class="card__like-button" type="button"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="cards-list"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -78,19 +35,50 @@
     </footer>
   </div>
 
-  <div class="popup">
+  <div class="popup popup_kind_edit">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="editForm" action="/controllerName/actionName" class="popup__form">
+      <form name="editForm" action="/controllerName/actionName1" class="popup__form popup__form_kind_edit">
         <input type="text" class="popup__textfield" id="name-input" name="profileName" placeholder="Имя">
         <input type="text" class="popup__textfield" id="about-input" name="profileAbout" placeholder="О себе">
-        <!-- Явно задал type="submit" т.к. полагаю что в дальнейшем нажатие на данную кнопку будет приводить к отправке на сервер.
-        Если не правильно понимаю как в дальнешейм будет отрабатывать кнопка, прошу считать что задал бы type="button"  -->
-        <button class="popup__save-button" type="submit">Сохранить</button>
+        <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
       <button class="popup__close-button" type="button"></button>
     </div>
   </div>
+
+  <div class="popup popup_kind_add">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form name="addCardForm" action="/controllerName/actionName2" class="popup__form popup__form_kind_add">
+        <input type="text" class="popup__textfield" id="place-name-input" name="placeName" placeholder="Название">
+        <input type="text" class="popup__textfield" id="place-image-path-input" name="placeImage" placeholder="Ссылка на картинку">
+        <button class="popup__submit-button" type="submit">Создать</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+  
+  <div class="popup popup_kind_image">
+    <div class="popup__fullscreen-image-container">
+      <figure class="popup__image-container">
+        <img class="popup__place-image" alt="Фото карточки">
+        <figcaption class="popup__place-name"></figcaption>
+      </figure>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+
+  <template id="card">
+    <li class="card">
+      <img class="card__image" alt="Фото карточки">
+      <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button class="card__like-button" type="button"></button>
+      </div>
+      <img class="card__remove-button" src="./images/remove-icon.svg" alt="Иконка удаления карточки">
+    </li>
+  </template>
 
   <script src="scripts/index.js"></script>
 </body>
