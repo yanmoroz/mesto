@@ -39,9 +39,17 @@
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="editForm" action="/controllerName/actionName1" class="popup__form popup__form_kind_edit">
-        <input type="text" class="popup__textfield" id="name-input" name="profileName" placeholder="Имя">
-        <input type="text" class="popup__textfield" id="about-input" name="profileAbout" placeholder="О себе">
-        <button class="popup__submit-button" type="submit">Сохранить</button>
+        <div class="popup__textfield-container">
+          <input type="text" class="popup__input popup__input" id="name-input" name="profileName" placeholder="Имя"
+            required minlength="2" maxlength="40">
+          <span class="name-input-error popup__error"></span>
+        </div>
+        <div class="popup__textfield-container">
+          <input type="text" class="popup__input" id="about-input" name="profileAbout" placeholder="О себе" required
+            minlength="2" maxlength="200">
+          <span class="about-input-error popup__error"></span>
+        </div>
+        <button class="popup__button" type="submit">Сохранить</button>
       </form>
       <button class="popup__close-button" type="button"></button>
     </div>
@@ -51,10 +59,17 @@
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <form name="addCardForm" action="/controllerName/actionName2" class="popup__form popup__form_kind_add">
-        <input type="text" class="popup__textfield" id="place-name-input" name="placeName" placeholder="Название">
-        <input type="text" class="popup__textfield" id="place-image-path-input" name="placeImage"
-          placeholder="Ссылка на картинку">
-        <button class="popup__submit-button" type="submit">Создать</button>
+        <div class="popup__textfield-container">
+          <input type="text" class="popup__input" id="place-name-input" name="placeName" placeholder="Название" required
+            minlength="2" maxlength="30">
+          <span class="place-name-input-error popup__error"></span>
+        </div>
+        <div class="popup__textfield-container">
+          <input type="url" class="popup__input" id="place-image-path-input" name="placeImage"
+            placeholder="Ссылка на картинку" required>
+          <span class="place-image-path-input-error popup__error"></span>
+        </div>
+        <button class="popup__button" type="submit">Создать</button>
       </form>
       <button class="popup__close-button" type="button"></button>
     </div>
@@ -81,7 +96,9 @@
     </li>
   </template>
 
+  <script src="scripts/initial-cards.js"></script>
   <script src="scripts/index.js"></script>
+  <script src="scripts/validate.js"></script>
 </body>
 
 </html>

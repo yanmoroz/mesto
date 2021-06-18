@@ -1,4 +1,5 @@
 // Variables defining
+const popups = document.querySelectorAll('.popup');
 const closePopupButtons = document.querySelectorAll('.popup__close-button');
 
 const editButton = document.querySelector('.profile__edit-button');
@@ -62,14 +63,16 @@ function createCard(name, imagePath) {
   return cardElement;
 }
 
-// Функция закрытия переданного попап
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
 // Функция открытия переданного попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', keyDownHandler);
+}
+
+// Функция закрытия переданного попап
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keyDownHandler);
 }
 
 // Функция поиска родительского попапа содержащего evt.currentTarget
@@ -77,11 +80,29 @@ function getParentPopup(evt) {
   return evt.currentTarget.closest('.popup');
 }
 
+// Обработчик нажатия на клавишу
+function keyDownHandler(evt) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    if (popup) {
+      closePopup(popup);
+    }
+  }
+}
+
+// Обработчик нажатия на оверлей попап
+function popupOverlayClickHandler(evt) {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
+}
+
 // Обработчик нажатия на кнопку редактирования
 function openEditPopupHandler() {
   openPopup(editPopup);
   nameInput.value = nameLabel.textContent;
   aboutInput.value = aboutLabel.textContent;
+  refreshFormValidationState(editForm);
 }
 
 // Обработчик формы сохранения введенных данных и закрытия попап при нажатии на кнопку "Сохранить"
@@ -95,6 +116,9 @@ function editFormSubmitHandler(evt) {
 // Обработчик нажатия на кнопку добавления новой карточки
 function openAddCardPopupHandler() {
   openPopup(addCardPopup);
+  placeNameInput.value = '';
+  placeImagePathInput.value = '';
+  refreshFormValidationState(addCardForm);
 }
 
 // Обработчик формы добавления новой карточки
@@ -120,35 +144,10 @@ editForm.addEventListener('submit', editFormSubmitHandler);
 addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 closePopupButtons.forEach(closeButton => {
   closeButton.addEventListener('click', closePopupButtonHandler);
-})
-
-// On 'document ready' code to proceed 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+});
+popups.forEach(popup => {
+  popup.addEventListener('mousedown', popupOverlayClickHandler);
+});
 
 initialCards.reverse().forEach(cardData => {
   const card = createCard(cardData.name, cardData.link);

@@ -1,0 +1,15 @@
+.popup__input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding: 5px 0 13px 0;
+  min-width: 100%;
+  box-sizing: border-box;
+  height: 27px;
+}
+
+.popup__input::placeholder {
+  color:#C3C3C3;
+}
