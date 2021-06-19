@@ -5,3 +5,7 @@
   width: 18px;
   height: 19.3px;
 }
+
+.card__remove-button:hover {
+  cursor: pointer;
+}

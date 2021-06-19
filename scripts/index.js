@@ -1,6 +1,5 @@
 // Variables defining
 const popups = document.querySelectorAll('.popup');
-const closePopupButtons = document.querySelectorAll('.popup__close-button');
 
 const editButton = document.querySelector('.profile__edit-button');
 const editPopup = document.querySelector('.popup_kind_edit');
@@ -75,25 +74,11 @@ function closePopup(popup) {
   document.removeEventListener('keydown', keyDownHandler);
 }
 
-// Функция поиска родительского попапа содержащего evt.currentTarget
-function getParentPopup(evt) {
-  return evt.currentTarget.closest('.popup');
-}
-
 // Обработчик нажатия на клавишу
 function keyDownHandler(evt) {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
-    if (popup) {
-      closePopup(popup);
-    }
-  }
-}
-
-// Обработчик нажатия на оверлей попап
-function popupOverlayClickHandler(evt) {
-  if (evt.target.classList.contains('popup_opened')) {
-    closePopup(evt.target);
+    closePopup(popup);
   }
 }
 
@@ -116,8 +101,7 @@ function editFormSubmitHandler(evt) {
 // Обработчик нажатия на кнопку добавления новой карточки
 function openAddCardPopupHandler() {
   openPopup(addCardPopup);
-  placeNameInput.value = '';
-  placeImagePathInput.value = '';
+  addCardForm.reset();
   refreshFormValidationState(addCardForm);
 }
 
@@ -126,27 +110,24 @@ function addCardFormSubmitHandler(evt) {
   evt.preventDefault();
   const card = createCard(placeNameInput.value, placeImagePathInput.value);
   prependCard(card);
-  placeNameInput.value = '';
-  placeImagePathInput.value = '';
+  addCardForm.reset();
   closePopup(addCardPopup);
 }
 
-// Обработчик нажатия кнопки закрытия popup
-function closePopupButtonHandler(evt) {
-  const popup = getParentPopup(evt);
-  closePopup(popup);
+// Обработчик нажатия кнопки по попап (форма + все вокруг включая оверлей)
+function popupClickHandler(evt) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(evt.currentTarget);
+  }
 }
-
+ 
 // Click and sumbit handlers assigning
 editButton.addEventListener('click', openEditPopupHandler);
 addCardButton.addEventListener('click', openAddCardPopupHandler);
 editForm.addEventListener('submit', editFormSubmitHandler);
 addCardForm.addEventListener('submit', addCardFormSubmitHandler);
-closePopupButtons.forEach(closeButton => {
-  closeButton.addEventListener('click', closePopupButtonHandler);
-});
 popups.forEach(popup => {
-  popup.addEventListener('mousedown', popupOverlayClickHandler);
+  popup.addEventListener('click', popupClickHandler);
 });
 
 initialCards.reverse().forEach(cardData => {
