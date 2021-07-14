@@ -1,11 +1,12 @@
 // Класс карточки
 export class Card {
 
-  // Констурктор. Принимает на вход объект с данными карточки и селектор template карточки
-  constructor(data, cardSelector) {
+  // Констурктор. Принимает на вход объект с данными карточки, селектор template карточки и обработчик нажатия на картинку карточки
+  constructor(data, cardSelector, imageClickHandler) {
     this._name = data.name;
     this._imageURL = data.link;
     this._cardSelector = cardSelector;
+    this._imageClickHandler = imageClickHandler;
   }
 
   // Получение разметки карточки из template
@@ -20,44 +21,38 @@ export class Card {
   }
 
   // Инициализация карточки (DOM), наполнение её данными и подключение слушателей событий
-  // Принимает на вход необязательный параметр - обработчик нажатия на картинку карточки
-  // Реализовано таким путем чтобы не противоречить ТЗ в котором четко указана сигнатура конструктора класса ...
-  // ... и чтобы не делать импорт модуля index.js что привело бы к ненужной кольцевой зависимости между модулями
-  generateCard(imageClickHandler = null) {
+  generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners(imageClickHandler);
 
-    const cardImage = this._element.querySelector('.card__image');
-    cardImage.src = this._imageURL;
-    cardImage.alt = this._name;
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__title');
+    this._likeButton = this._element.querySelector('.card__like-button')
+    this._removeButton = this._element.querySelector('.card__remove-button')
 
-    this._element.querySelector('.card__title').textContent = this._name;
+    this._cardImage.src = this._imageURL;
+    this._cardImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
+
+    this._setEventListeners();
 
     return this._element;
   }
 
   // Добавление слушателей событий
-  _setEventListeners(imageClickHandler = null) {
-    this._element.querySelector('.card__like-button').addEventListener('click', this._toggleLikeButtonClickHandler);
-    this._element.querySelector('.card__remove-button').addEventListener('click', this._removeCardButtonEventHandler);
-
-    // Если был передан обработчик нажатия на картинку от родительского View
-    if (imageClickHandler) {
-      this._element.querySelector('.card__image').addEventListener('click', () => {
-        imageClickHandler(this._name, this._imageURL);
-      });
-    }
+  _setEventListeners() {
+    this._likeButton.addEventListener('click', () => this._toggleLikeButtonClickHandler());
+    this._removeButton.addEventListener('click', () => this._removeCardButtonEventHandler());
+    this._cardImage.addEventListener('click', () => this._imageClickHandler(this._name, this._imageURL));
   }
 
   // Обработчик нажатия на кнопку удаления
-  _removeCardButtonEventHandler(evt) {
-    const card = evt.currentTarget.parentNode;
-    card.remove();
+  _removeCardButtonEventHandler() {
+    this._element.remove();
+    this._element = null;
   }
 
   // Обработчик нажатия на кнопку лайка
-  _toggleLikeButtonClickHandler(evt) {
-    const likeButton = evt.currentTarget;
-    likeButton.classList.toggle('card__like-button_liked');
+  _toggleLikeButtonClickHandler() {
+    this._likeButton.classList.toggle('card__like-button_liked');
   }
 }

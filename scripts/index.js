@@ -53,8 +53,8 @@ function closePopup(popup) {
 
 // Создание карточки, селектор teplate карточки задан по умолчанию
 function createCard(cardData, cardSelector = "#card") {
-  const card = new Card(cardData, cardSelector);
-  const cardElement = card.generateCard(cardImageClickHandler);
+  const card = new Card(cardData, cardSelector, cardImageClickHandler);
+  const cardElement = card.generateCard();
   return cardElement;
 }
 

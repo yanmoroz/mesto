@@ -5,6 +5,8 @@ export class FormValidator {
   constructor(validationConfig, formElement) {
     this._validationConfig = validationConfig;
     this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
   }
 
   // Запуск механизма валидации
@@ -15,13 +17,10 @@ export class FormValidator {
 
   // Сброс валидации у элементов формы: скрытие текста ошибок + откат submit-кнопки к default-состоянию
   resetFormValidationState() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
-    const buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
-
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState(this._inputList, this._buttonElement);
   }
 
   // Проверка валидности элемента формы
@@ -35,13 +34,10 @@ export class FormValidator {
 
   // Добавление слушателей событий
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
-    const buttonElement = this._formElement.querySelector(this._validationConfig.submitButtonSelector);
-
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   }

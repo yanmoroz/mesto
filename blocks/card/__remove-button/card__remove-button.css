@@ -4,6 +4,12 @@
   right: 15px;
   width: 18px;
   height: 19.3px;
+  background-image: url('../../../images/remove-icon.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
 }
 
 .card__remove-button:hover {
