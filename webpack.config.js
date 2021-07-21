@@ -10,8 +10,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-    library: 'webpackGhPages'
+    publicPath: '',
   },
+  mode: 'development',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
     open: true,
@@ -38,7 +39,7 @@ module.exports = {
           },
           'postcss-loader'
         ]
-      },
+      }
     ]
   },
   plugins: [
@@ -46,7 +47,6 @@ module.exports = {
       template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
-
+    new MiniCssExtractPlugin()
   ]
 } 
