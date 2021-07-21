@@ -1,8 +1,10 @@
 // Импорты из других модулей
 
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { initialCards } from './initial-cards.js';
+import './pages/index.css';
+
+import { Card } from './scripts/Card.js';
+import { FormValidator } from './scripts/FormValidator.js';
+import { initialCards } from './scripts/initial-cards.js';
 
 // Используемые элементы DOM страницы
 
