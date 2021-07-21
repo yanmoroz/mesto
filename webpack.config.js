@@ -10,9 +10,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-    publicPath: '',
+    library: 'webpackGhPages'
   },
-  mode: 'development',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
     open: true,
