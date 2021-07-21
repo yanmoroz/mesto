@@ -9,6 +9,7 @@ Mesto: интерактивная страница, куда можно доба
 * Flex & Grid
 * Adaptive
 * JS
+* Webpack
 
 **Figma**
 
