@@ -2,11 +2,11 @@
 export class Card {
 
   // Констурктор. Принимает на вход объект с данными карточки, селектор template карточки и обработчик нажатия на картинку карточки
-  constructor(data, cardSelector, imageClickHandler) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._imageURL = data.link;
     this._cardSelector = cardSelector;
-    this._imageClickHandler = imageClickHandler;
+    this._handleCardClick = handleCardClick;
   }
 
   // Получение разметки карточки из template
@@ -40,19 +40,19 @@ export class Card {
 
   // Добавление слушателей событий
   _setEventListeners() {
-    this._likeButton.addEventListener('click', () => this._toggleLikeButtonClickHandler());
-    this._removeButton.addEventListener('click', () => this._removeCardButtonEventHandler());
-    this._cardImage.addEventListener('click', () => this._imageClickHandler(this._name, this._imageURL));
+    this._likeButton.addEventListener('click', () => this._handleToggleLikeButtonClick());
+    this._removeButton.addEventListener('click', () => this._handleRemoveCardButtonEvent());
+    this._cardImage.addEventListener('click', () => this._handleCardClick(this._name, this._imageURL));
   }
 
   // Обработчик нажатия на кнопку удаления
-  _removeCardButtonEventHandler() {
+  _handleRemoveCardButtonEvent() {
     this._element.remove();
     this._element = null;
   }
 
   // Обработчик нажатия на кнопку лайка
-  _toggleLikeButtonClickHandler() {
+  _handleToggleLikeButtonClick() {
     this._likeButton.classList.toggle('card__like-button_liked');
   }
 }
