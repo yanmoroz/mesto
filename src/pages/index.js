@@ -9,14 +9,14 @@ import {
   cardTemplateSelector,
   profileNameLabelSelector,
   profileAboutLabelSelector,
-  profileNameInputSelector,
-  profileAboutInputSelector,
+  nameInput,
+  aboutInput,
   editProfilePopupSelector,
-  editProfileFormSelector,
-  openEditProfileButtonSelector,
-  openAddNewCardButtonSelector,
+  editForm,
+  editButton,
+  addCardButton,
   addNewCardPopupSelector,
-  addNewCardFormSelector,
+  addCardForm,
   cardInfoPopupSelector
 } from '../scripts/constants.js';
 
@@ -26,12 +26,6 @@ import { FormValidator } from '../components/FormValidator.js';
 import { PopupWithImage } from '../components/PopupWithImage';
 import { PopupWithForm } from '../components/PopupWithForm';
 import { UserInfo } from '../components/UserInfo';
-
-const editButton = document.querySelector(openEditProfileButtonSelector);
-const addCardButton = document.querySelector(openAddNewCardButtonSelector);
-
-const editForm = document.querySelector(editProfileFormSelector);
-const addCardForm = document.querySelector(addNewCardFormSelector);
 
 // Инициализация и запуск валидаторов
 const editFormValidator = new FormValidator(validationConfig, editForm);
@@ -47,13 +41,9 @@ const editInfoPopup = new PopupWithForm(
   {
     popupSelector: editProfilePopupSelector,
     handlePopupOpening: () => {
-      const nameInput = document.querySelector(profileNameInputSelector);
-      const aboutInput = document.querySelector(profileAboutInputSelector);
       const userInfoData = userInfo.getUserInfo();
-
       nameInput.value = userInfoData.name;
       aboutInput.value = userInfoData.about;
-
       editFormValidator.resetFormValidationState();
     },
     handleFormSubmit: (newUserInfo) => {

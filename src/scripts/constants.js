@@ -12,16 +12,17 @@ export const cardTemplateSelector = "#card";
 
 export const profileNameLabelSelector = '.profile__name';
 export const profileAboutLabelSelector = '.profile__about';
-export const profileNameInputSelector = '#name-input';
-export const profileAboutInputSelector = '#about-input';
 export const editProfilePopupSelector = '.popup_kind_edit';
-export const editProfileFormSelector = '.popup__form_kind_edit';
-export const openEditProfileButtonSelector = '.profile__edit-button';
+export const editButton = document.querySelector('.profile__edit-button');
+export const editForm = document.querySelector('.popup__form_kind_edit');
+export const nameInput = document.querySelector('#name-input');
+export const aboutInput = document.querySelector('#about-input');
 
-export const openAddNewCardButtonSelector = '.profile__add-button';
+
 export const addNewCardPopupSelector = '.popup_kind_add';
-export const addNewCardFormSelector = '.popup__form_kind_add';
 export const placeNameInputSelector = '#place-name-input';
 export const placeImagePathInputSelector = '#place-image-path-input';
+export const addCardButton = document.querySelector('.profile__add-button');
+export const addCardForm = document.querySelector('.popup__form_kind_add');
 
 export const cardInfoPopupSelector = '.popup_kind_image';
