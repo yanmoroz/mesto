@@ -10,6 +10,7 @@ Mesto: интерактивная страница, куда можно доба
 * Adaptive
 * JS
 * Webpack
+* API
 
 **Figma**
 

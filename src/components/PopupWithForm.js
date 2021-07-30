@@ -29,7 +29,9 @@ export class PopupWithForm extends Popup {
     });
   }
 
-  open() {
+  open(context) {
+    this._context = context;
+    
     if (this._handlePopupOpening) {
       this._handlePopupOpening();
     }
@@ -38,8 +40,13 @@ export class PopupWithForm extends Popup {
   }
 
   close() {
+    this._context = null;
     super.close();
     this._form.reset();
+  }
+
+  getContext() {
+    return this._context;
   }
 
   updateSubmitButtonTitle({ title }) {

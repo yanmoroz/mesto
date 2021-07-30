@@ -39,7 +39,6 @@ import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { PopupWithImage } from '../components/PopupWithImage';
 import { PopupWithForm } from '../components/PopupWithForm';
-import { PopupDeleteConfirm } from '../components/PopupDeleteConfirm';
 import { UserInfo } from '../components/UserInfo';
 import { Api } from '../components/Api';
 
@@ -137,14 +136,16 @@ const changeAvatarPopup = new PopupWithForm(
 
 const cardInfoPopup = new PopupWithImage({ popupSelector: cardInfoPopupSelector });
 
-const deleteConfirmPopup = new PopupDeleteConfirm(
+const deleteConfirmPopup = new PopupWithForm(
   {
     popupSelector: deleteConfirmPopupSelector,
-    handleFormSubmit: (card) => {
+    handleFormSubmit: () => {
       deleteConfirmPopup.updateSubmitButtonTitle({ title: isDeletingString });
-      api.deleteCard({ cardId: card.getCardId() })
+      const cardToDelete = deleteConfirmPopup.getContext();
+      const cardToDeleteId = cardToDelete.getCardId();
+      api.deleteCard({ cardId: cardToDeleteId })
         .then(() => {
-          card.removeItem();
+          cardToDelete.removeItem();
         })
         .catch(err => console.log(err))
         .finally(() => {
@@ -166,7 +167,7 @@ const createCard = (cardModel) => {
     hasCurrentUserLike: hasCurrentUserLike,
     cardSelector: cardTemplateSelector,
     handleCardClick: () => cardInfoPopup.open({ name: cardModel.name, imagePath: cardModel.link }),
-    handleDeleteButtonClick: () => deleteConfirmPopup.open({ context: card }),
+    handleDeleteButtonClick: () => deleteConfirmPopup.open(card),
     handleLikeButtonClick: (isLiked) => {
       if (isLiked) {
         api.removeLike({ cardId: cardModel._id })
