@@ -2,10 +2,11 @@ import { Popup } from "./Popup";
 
 export class PopupWithForm extends Popup {
   constructor({ popupSelector, handlePopupOpening, handleFormSubmit }) {
-    super(popupSelector);
+    super({ popupSelector: popupSelector });
 
     this._form = this._popup.querySelector('.popup__form');
     this._inputList = this._form.querySelectorAll('.popup__input');
+    this._submitButton = this._form.querySelector('.popup__button');
     this._handleFormSubmit = handleFormSubmit;
     this._handlePopupOpening = handlePopupOpening;
   }
@@ -39,5 +40,9 @@ export class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  updateSubmitButtonTitle({ title }) {
+    this._submitButton.textContent = title;
   }
 }

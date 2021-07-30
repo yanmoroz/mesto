@@ -2,7 +2,7 @@
 export class FormValidator {
 
   // Конструктор. Принимает на вход объект с настройками валидации и формой которую требуется валидировать
-  constructor(validationConfig, formElement) {
+  constructor({ validationConfig, formElement }) {
     this._validationConfig = validationConfig;
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._validationConfig.inputSelector));
