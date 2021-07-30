@@ -21,8 +21,6 @@ export const aboutInput = document.querySelector('#about-input');
 export const profileAvatarContainer = document.querySelector('.profile__avatar-container');
 
 export const addNewCardPopupSelector = '.popup_kind_add';
-export const placeNameInputSelector = '#place-name-input';
-export const placeImagePathInputSelector = '#place-image-path-input';
 export const addCardButton = document.querySelector('.profile__add-button');
 export const addCardForm = document.querySelector('.popup__form_kind_add');
 
