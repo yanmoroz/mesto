@@ -10,7 +10,10 @@ export class UserInfo {
   }
 
   setUserInfo({ userInfoModel }) {
+    // С сервера всегда приходит одинаковая структура данных о пользователе. Храним их в переменной model, 
+    // в случае расширения новым полем останется лишь извлечь новые поле в месте где оно требуется через вызов getUserInfo()
     this._model = userInfoModel;
+
     this._name.textContent = userInfoModel.name;
     this._about.textContent = userInfoModel.about;
     this._avatar.src = userInfoModel.avatar;

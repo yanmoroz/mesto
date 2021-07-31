@@ -80,12 +80,12 @@ const editInfoPopup = new PopupWithForm(
       editInfoPopup.updateSubmitButtonTitle({ title: isSavingString });
       api.updateUserInfo({ name: editFormInputValues.profileName, about: editFormInputValues.profileAbout })
         .then(userInfoModel => {
-          userInfo.setUserInfo({ userInfoModel: userInfoModel });
+          userInfo.setUserInfo({ userInfoModel });
+          editInfoPopup.close();
         })
         .catch(err => console.log(err))
         .finally(() => {
           editInfoPopup.updateSubmitButtonTitle({ title: saveString });
-          editInfoPopup.close();
         })
     }
   }
@@ -103,10 +103,10 @@ const addCardPopup = new PopupWithForm(
         .then(cardModel => {
           const cardElement = createCard(cardModel);
           cardsList.addItem({ item: cardElement });
+          addCardPopup.close();
         })
         .catch(err => console.log(err))
         .finally(() => {
-          addCardPopup.close();
           addCardPopup.updateSubmitButtonTitle({ title: addString });
         })
     }
@@ -123,11 +123,11 @@ const changeAvatarPopup = new PopupWithForm(
       changeAvatarPopup.updateSubmitButtonTitle({ title: isSavingString });
       api.changeAvatar({ avatarLink: changeAvatarFormInputValues.avatarLink })
         .then(userInfoModel => {
-          userInfo.setUserInfo({ userInfoModel: userInfoModel });
+          userInfo.setUserInfo({ userInfoModel });
+          changeAvatarPopup.close();
         })
         .catch(err => console.log(err))
         .finally(() => {
-          changeAvatarPopup.close();
           changeAvatarPopup.updateSubmitButtonTitle({ title: saveString });
         })
     }
@@ -146,10 +146,10 @@ const deleteConfirmPopup = new PopupWithForm(
       api.deleteCard({ cardId: cardToDeleteId })
         .then(() => {
           cardToDelete.removeItem();
+          deleteConfirmPopup.close();
         })
         .catch(err => console.log(err))
         .finally(() => {
-          deleteConfirmPopup.close();
           deleteConfirmPopup.updateSubmitButtonTitle({ title: yesString });
         })
     }
@@ -224,7 +224,7 @@ Promise.all(
     const userInfoModel = results[0];
     const cardsModel = results[1];
 
-    userInfo.setUserInfo({ userInfoModel: userInfoModel });
+    userInfo.setUserInfo({ userInfoModel });
     cardsList.renderItems({
       items: cardsModel.reverse(),
       renderer: cardModel => {
